@@ -146,6 +146,9 @@
         <input type="hidden" name="retURL" value="/thank-you.html" />
         <input type="hidden" name="debug" value="1" />
         
+        <!-- Required Lead Status (hidden) -->
+        <input type="hidden" name="status" value="New" />
+        
         <!-- Netlify form detection -->
         <input type="hidden" name="form-name" value="backup-lead-form" />
 
@@ -199,8 +202,8 @@
         </div>
 
         <div class="form-group">
-          <label for="Lead_Source_Category__c">Lead Source Category</label>
-          <select id="Lead_Source_Category__c" name="Lead_Source_Category__c">
+          <label for="Lead_Source_Category__c">Lead Source Category <span class="required">*</span></label>
+          <select id="Lead_Source_Category__c" name="Lead_Source_Category__c" required>
             <option value="">-- Select One --</option>
             <option value="Fair">Fair</option>
             <option value="Home Show">Home Show</option>
@@ -209,8 +212,36 @@
         </div>
 
         <div class="form-group">
-          <label for="description">Services of Interest / Additional Information</label>
-          <textarea id="description" name="description" rows="4" placeholder="Please describe the services you're interested in..."></textarea>
+          <label for="Lead_Source_Detail__c">Lead Source Detail <span class="required">*</span></label>
+          <select id="Lead_Source_Detail__c" name="Lead_Source_Detail__c" required>
+            <option value="">-- Select One --</option>
+            <option value="Washington County Fair">Washington County Fair</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="Assigned_Sales_Rep__c">Assigned Sales Rep</label>
+          <select id="Assigned_Sales_Rep__c" name="Assigned_Sales_Rep__c">
+            <option value="">-- Select --</option>
+            <option value="Eric Ritger">Eric Ritger</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="Service_s_of_Interest__c">Service(s) of Interest <span class="required">*</span></label>
+          <select id="Service_s_of_Interest__c" name="Service_s_of_Interest__c" required>
+            <option value="">-- Select --</option>
+            <option value="Radon Testing">Radon Testing</option>
+            <option value="Radon Mitigation">Radon Mitigation</option>
+            <option value="Custom Closets">Custom Closets</option>
+            <option value="Multiple (Concierge Services)">Multiple (Concierge Services)</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="description">Additional Information</label>
+          <textarea id="description" name="description" rows="4" placeholder="Please describe any additional services or information..."></textarea>
         </div>
 
         <button type="submit" class="submit-btn">Submit</button>
