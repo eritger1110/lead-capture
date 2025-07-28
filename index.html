@@ -70,7 +70,8 @@
     input[type="text"],
     input[type="email"],
     input[type="tel"],
-    select {
+    select,
+    textarea {
       width: 100%;
       padding: 12px 16px;
       border: 2px solid #e1e5e9;
@@ -83,7 +84,8 @@
     input[type="text"]:focus,
     input[type="email"]:focus,
     input[type="tel"]:focus,
-    select:focus {
+    select:focus,
+    textarea:focus {
       outline: none;
       border-color: #0074c1;
       box-shadow: 0 0 0 3px rgba(0, 116, 193, 0.1);
@@ -146,9 +148,6 @@
         
         <!-- Netlify form detection -->
         <input type="hidden" name="form-name" value="backup-lead-form" />
-        
-        <!-- Required Company field for Salesforce -->
-        <input type="hidden" name="company" value="Residential Customer" />
 
         <div class="form-row">
           <div class="form-group">
@@ -163,25 +162,30 @@
         </div>
 
         <div class="form-group">
-          <label for="street">Address <span class="required">*</span></label>
-          <input id="street" name="street" type="text" required />
+          <label for="company">Company <span class="required">*</span></label>
+          <input id="company" name="company" type="text" value="Residential Customer" required />
+        </div>
+
+        <div class="form-group">
+          <label for="street">Address</label>
+          <input id="street" name="street" type="text" />
         </div>
 
         <div class="form-row">
           <div class="form-group">
-            <label for="city">City <span class="required">*</span></label>
-            <input id="city" name="city" type="text" required />
+            <label for="city">City</label>
+            <input id="city" name="city" type="text" />
           </div>
 
           <div class="form-group">
-            <label for="state">State <span class="required">*</span></label>
-            <input id="state" name="state" type="text" required />
+            <label for="state">State</label>
+            <input id="state" name="state" type="text" />
           </div>
         </div>
 
         <div class="form-group">
-          <label for="zip">Zip Code <span class="required">*</span></label>
-          <input id="zip" name="zip" type="text" required />
+          <label for="zip">Zip Code</label>
+          <input id="zip" name="zip" type="text" />
         </div>
 
         <div class="form-group">
@@ -195,91 +199,8 @@
         </div>
 
         <div class="form-group">
-          <label for="Lead_Source_Category__c">Lead Source Category <span class="required">*</span></label>
-          <select id="Lead_Source_Category__c" name="Lead_Source_Category__c" required>
-            <option value="">-- Select One --</option>
-            <option value="Home Show">Home Show</option>
-            <option value="Fair">Fair</option>
-            <option value="Builder">Builder</option>
-            <option value="Referral">Referral</option>
-            <option value="Home Depot">Home Depot</option>
-            <option value="Costco">Costco</option>
-            <option value="Angi">Angi</option>
-            <option value="Website / SEO">Website / SEO</option>
-            <option value="Facebook / Social">Facebook / Social</option>
-            <option value="Google">Google</option>
-            <option value="Other">Other</option>
-          </select>
-        </div>
-
-        <div class="form-group">
-          <label for="Lead_Source_Detail__c">Lead Source Detail <span class="required">*</span></label>
-          <select id="Lead_Source_Detail__c" name="Lead_Source_Detail__c" required>
-            <option value="">-- Select One --</option>
-            <option value="Belman">Belman</option>
-            <option value="Bielinski">Bielinski</option>
-            <option value="Espire">Espire</option>
-            <option value="Fox Cities Home & Garden Show">Fox Cities Home & Garden Show</option>
-            <option value="Green Bay Home & Lifestyle">Green Bay Home & Lifestyle</option>
-            <option value="Green Bay Pet Expo">Green Bay Pet Expo</option>
-            <option value="Joseph Douglas">Joseph Douglas</option>
-            <option value="Kings Way">Kings Way</option>
-            <option value="Madison Build, Remodel & Landscape Show">Madison Build, Remodel & Landscape Show</option>
-            <option value="Mastercraft">Mastercraft</option>
-            <option value="NARI Madison - Build & Remodel Expo">NARI Madison - Build & Remodel Expo</option>
-            <option value="NARI Spring Home Improvement Show">NARI Spring Home Improvement Show</option>
-            <option value="New Berlin Safety Saturday">New Berlin Safety Saturday</option>
-            <option value="Ozaukee County Fair">Ozaukee County Fair</option>
-            <option value="Realtor's Home & Garden Show">Realtor's Home & Garden Show</option>
-            <option value="WAHI Spring Training Seminar">WAHI Spring Training Seminar</option>
-            <option value="Washington County Builders Expo">Washington County Builders Expo</option>
-            <option value="Washington County Fair">Washington County Fair</option>
-            <option value="Waupaca Home Improvement">Waupaca Home Improvement</option>
-          </select>
-        </div>
-
-        <div class="form-group">
-          <label for="Assigned_Sales_Rep__c">Assigned Sales Rep</label>
-          <select id="Assigned_Sales_Rep__c" name="Assigned_Sales_Rep__c">
-            <option value="">-- Select --</option>
-            <option value="Aiden Abramowski">Aiden Abramowski</option>
-            <option value="Alan Wickesberg">Alan Wickesberg</option>
-            <option value="Ashley Luetke">Ashley Luetke</option>
-            <option value="Barrett Ruis">Barrett Ruis</option>
-            <option value="Brian Hasenbush">Brian Hasenbush</option>
-            <option value="Dane Warren">Dane Warren</option>
-            <option value="Dominic Balistreri">Dominic Balistreri</option>
-            <option value="Emily Roamer">Emily Roamer</option>
-            <option value="Eric Ritger">Eric Ritger</option>
-            <option value="George Booth">George Booth</option>
-            <option value="James Evans">James Evans</option>
-            <option value="Jennifer Campbell">Jennifer Campbell</option>
-            <option value="Jerad Warren">Jerad Warren</option>
-            <option value="Jill Polifka">Jill Polifka</option>
-            <option value="Jo Bort">Jo Bort</option>
-            <option value="Joshua Ostby">Joshua Ostby</option>
-            <option value="Justin Bahr">Justin Bahr</option>
-            <option value="Kyle Italis">Kyle Italis</option>
-            <option value="Lacey Davis">Lacey Davis</option>
-          </select>
-        </div>
-
-        <div class="form-group">
-          <label for="Service_s_of_Interest__c">Service(s) of Interest <span class="required">*</span></label>
-          <select id="Service_s_of_Interest__c" name="Service_s_of_Interest__c" required>
-            <option value="">-- Select --</option>
-            <option value="Radon Testing">Radon Testing</option>
-            <option value="Radon Mitigation">Radon Mitigation</option>
-            <option value="Duct Cleaning">Duct Cleaning</option>
-            <option value="Aeroseal">Aeroseal</option>
-            <option value="Garage Floor Coating">Garage Floor Coating</option>
-            <option value="Basement Floor Coating">Basement Floor Coating</option>
-            <option value="Patio Floor Coating">Patio Floor Coating</option>
-            <option value="Custom Closets">Custom Closets</option>
-            <option value="Window Treatments">Window Treatments</option>
-            <option value="Smart Home/AV/Security">Smart Home/AV/Security</option>
-            <option value="Multiple (Concierge Services)">Multiple (Concierge Services)</option>
-          </select>
+          <label for="description">Services of Interest / Additional Information</label>
+          <textarea id="description" name="description" rows="4" placeholder="Please describe the services you're interested in..."></textarea>
         </div>
 
         <button type="submit" class="submit-btn">Submit</button>
