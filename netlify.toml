@@ -1,0 +1,45 @@
+[build]
+  functions = "functions"
+  publish = "."
+
+# Environment variables for functions
+[build.environment]
+  NODE_VERSION = "18"
+
+# Form processing settings to enable Netlify's built-in form handling
+[forms]
+  enabled = true
+
+# Function settings
+[functions]
+  directory = "functions"
+  node_bundler = "esbuild"
+
+# Security and performance headers
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    X-XSS-Protection = "1; mode=block"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+[[headers]]
+  for = "*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/.netlify/functions/*"
+  [headers.values]
+    Access-Control-Allow-Origin = "*"
+    Access-Control-Allow-Headers = "Content-Type"
+    Access-Control-Allow-Methods = "GET, POST, OPTIONS"
+
+# Redirects for form submission
+[[redirects]]
+  from = "/submit-lead"
+  to = "/.netlify/functions/submit-lead"
+  method = "POST"
+  status = 200
+

@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Lifetime Home Services – Lead Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f8f8f8;
+      padding: 40px;
+    }
+    .container {
+      max-width: 600px;
+      margin: auto;
+      background: #fff;
+      border-radius: 10px;
+      padding: 30px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    img {
+      display: block;
+      margin: 0 auto 20px;
+      width: 180px;
+    }
+    label {
+      font-weight: bold;
+      display: block;
+      margin: 15px 0 5px;
+    }
+    input, select {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      box-sizing: border-box;
+    }
+    button {
+      width: 100%;
+      padding: 12px;
+      background-color: #006bb6;
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #005a87;
+    }
+    @media (max-width: 600px) {
+      body {
+        padding: 20px;
+      }
+      .container {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <img src="lhs-logo.png" alt="Lifetime Home Services Logo" />
+    <form name="backup-lead-form" action="/.netlify/functions/submit-lead" method="POST" data-netlify="true">
+      <!-- Salesforce Web-To-Lead hidden fields -->
+      <input type="hidden" name="oid" value="00D8b0000023HqA" />
+      <input type="hidden" name="retURL" value="/thank-you.html" />
+      <input type="hidden" name="debug" value="1" />
+      
+      <!-- Netlify form detection -->
+      <input type="hidden" name="form-name" value="backup-lead-form" />
+
+      <label for="first_name">First Name</label>
+      <input id="first_name" name="first_name" type="text" required />
+
+      <label for="last_name">Last Name</label>
+      <input id="last_name" name="last_name" type="text" required />
+
+      <label for="street">Address</label>
+      <input id="street" name="street" type="text" />
+
+      <label for="city">City</label>
+      <input id="city" name="city" type="text" />
+
+      <label for="state">State</label>
+      <input id="state" name="state" type="text" />
+
+      <label for="zip">Zip Code</label>
+      <input id="zip" name="zip" type="text" />
+
+      <label for="email">Email</label>
+      <input id="email" name="email" type="email" required />
+
+      <label for="phone">Phone</label>
+      <input id="phone" name="phone" type="tel" required />
+
+      <label for="00Nfo000001k1ID">Lead Source Category</label>
+      <select id="00Nfo000001k1ID" name="00Nfo000001k1ID" required>
+        <option value="">-- Select One --</option>
+        <option>Home Show</option>
+        <option>Fair</option>
+        <option>Builder</option>
+        <option>Referral</option>
+        <option>Home Depot</option>
+        <option>Costco</option>
+        <option>Angi</option>
+        <option>Website / SEO</option>
+        <option>Facebook / Social</option>
+        <option>Google</option>
+        <option>Other</option>
+      </select>
+
+      <label for="00Nfo000001k1II">Lead Source Detail</label>
+      <select id="00Nfo000001k1II" name="00Nfo000001k1II">
+        <option value="">-- Select One --</option>
+        <option>Belman</option>
+        <option>Bielinski</option>
+        <option>Espire</option>
+        <option>Fox Cities Home & Garden Show</option>
+        <option>Green Bay Home & Lifestyle</option>
+        <option>Green Bay Pet Expo</option>
+        <option>Joseph Douglas</option>
+        <option>Kings Way</option>
+        <option>Madison Build, Remodel & Landscape Show</option>
+        <option>Mastercraft</option>
+        <option>NARI Madison - Build & Remodel Expo</option>
+        <option>NARI Spring Home Improvement Show</option>
+        <option>New Berlin Safety Saturday</option>
+        <option>Ozaukee County Fair</option>
+        <option>Realtor's Home & Garden Show</option>
+        <option>WAHI Spring Training Seminar</option>
+        <option>Washington County Builders Expo</option>
+        <option>Washington County Fair</option>
+        <option>Waupaca Home Improvement</option>
+        <option>Waupaca Home & Outdoor Summer</option>
+        <option>Waukesha County Fair</option>
+        <option>Westridge</option>
+        <option>Wisconsin State Fair</option>
+      </select>
+
+      <label for="00Nf0000001k1IM">Assigned Sales Rep</label>
+      <select id="00Nf0000001k1IM" name="00Nf0000001k1IM">
+        <option value="">-- Select --</option>
+        <option>Aiden Abramowski</option>
+        <option>Alan Wickesberg</option>
+        <option>Ashley Luetke</option>
+        <option>Barrett Ruis</option>
+        <option>Brian Hasenbush</option>
+        <option>Dane Warren</option>
+        <option>Dominic Balistreri</option>
+        <option>Emily Roamer</option>
+        <option>Eric Ritger</option>
+        <option>George Booth</option>
+        <option>James Evans</option>
+        <option>Jennifer Campbell</option>
+        <option>Jerad Warren</option>
+        <option>Jill Polifka</option>
+        <option>Jo Bort</option>
+        <option>Joshua Ostby</option>
+        <option>Justin Bahr</option>
+        <option>Kyle Italis</option>
+        <option>Lacey Davis</option>
+        <option>Liam Burczyk</option>
+        <option>Lola Warren</option>
+        <option>Mark Burmeister</option>
+        <option>Mario Balistreri</option>
+        <option>Maye Naskovitch</option>
+        <option>Mike Sylvester</option>
+        <option>Patty Van Allen</option>
+        <option>Rick Dahl</option>
+        <option>Robyn Drajeske</option>
+        <option>Scott Campbell</option>
+        <option>Scott Crescenti</option>
+        <option>Tom Dougherty</option>
+        <option>Will Hietpas</option>
+        <option>Xavier Mielke</option>
+      </select>
+
+      <label for="00Nfo000001k1IE">Service(s) of Interest</label>
+      <select id="00Nfo000001k1IE" name="00Nfo000001k1IE" required>
+        <option value="">-- Select --</option>
+        <option>Radon Testing</option>
+        <option>Radon Mitigation</option>
+        <option>Duct Cleaning</option>
+        <option>Aeroseal</option>
+        <option>Garage Floor Coating</option>
+        <option>Basement Floor Coating</option>
+        <option>Patio Floor Coating</option>
+        <option>Custom Closets</option>
+        <option>Window Treatments</option>
+        <option>Smart Home/AV/Security</option>
+        <option>Multiple (Concierge Services)</option>
+      </select>
+
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+</body>
+</html>
+
