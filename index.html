@@ -1,205 +1,290 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Lifetime Home Services – Lead Form</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f8f8f8;
-      padding: 40px;
-    }
-    .container {
-      max-width: 600px;
-      margin: auto;
-      background: #fff;
-      border-radius: 10px;
-      padding: 30px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    }
-    img {
-      display: block;
-      margin: 0 auto 20px;
-      width: 180px;
-    }
-    label {
-      font-weight: bold;
-      display: block;
-      margin: 15px 0 5px;
-    }
-    input, select {
-      width: 100%;
-      padding: 10px;
-      margin-bottom: 10px;
-      border: 1px solid #ccc;
-      border-radius: 6px;
+    * {
+      margin: 0;
+      padding: 0;
       box-sizing: border-box;
     }
-    button {
-      width: 100%;
-      padding: 12px;
-      background-color: #006bb6;
+
+    body {
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+    }
+
+    .header {
+      background: linear-gradient(135deg, #004990 0%, #0074c1 100%);
       color: white;
+      padding: 30px;
+      text-align: center;
+    }
+
+    .logo {
+      max-width: 200px;
+      height: auto;
+      margin-bottom: 20px;
+    }
+
+    .header h1 {
+      font-size: 28px;
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+
+    .header p {
       font-size: 16px;
-      font-weight: bold;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
+      opacity: 0.9;
     }
-    button:hover {
-      background-color: #005a87;
+
+    .form-container {
+      padding: 40px;
     }
+
+    .form-group {
+      margin-bottom: 25px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: #333;
+      font-size: 14px;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    select {
+      width: 100%;
+      padding: 12px 16px;
+      border: 2px solid #e1e5e9;
+      border-radius: 8px;
+      font-size: 16px;
+      transition: all 0.3s ease;
+      background-color: #fff;
+    }
+
+    input[type="text"]:focus,
+    input[type="email"]:focus,
+    input[type="tel"]:focus,
+    select:focus {
+      outline: none;
+      border-color: #0074c1;
+      box-shadow: 0 0 0 3px rgba(0, 116, 193, 0.1);
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
     @media (max-width: 600px) {
-      body {
-        padding: 20px;
+      .form-row {
+        grid-template-columns: 1fr;
       }
-      .container {
-        padding: 20px;
-      }
+    }
+
+    .submit-btn {
+      background: linear-gradient(135deg, #0074c1 0%, #004990 100%);
+      color: white;
+      padding: 16px 32px;
+      border: none;
+      border-radius: 8px;
+      font-size: 18px;
+      font-weight: 600;
+      cursor: pointer;
+      width: 100%;
+      transition: all 0.3s ease;
+      margin-top: 20px;
+    }
+
+    .submit-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(0, 116, 193, 0.3);
+    }
+
+    .submit-btn:active {
+      transform: translateY(0);
+    }
+
+    .required {
+      color: #e74c3c;
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <img src="lhs-logo.png" alt="Lifetime Home Services Logo" />
-    <form name="backup-lead-form" action="/.netlify/functions/submit-lead" method="POST" data-netlify="true">
-      <!-- Salesforce Web-To-Lead hidden fields -->
-      <input type="hidden" name="oid" value="00Dfo000001KoHp" />
-      <input type="hidden" name="retURL" value="/thank-you.html" />
-      <input type="hidden" name="debug" value="1" />
-      
-      <!-- Netlify form detection -->
-      <input type="hidden" name="form-name" value="backup-lead-form" />
+    <div class="header">
+      <img src="lhs-logo.png" alt="Lifetime Home Services Logo" class="logo" />
+      <h1>Get Your Free Estimate</h1>
+      <p>Connect with our experts today</p>
+    </div>
+    
+    <div class="form-container">
+      <form name="backup-lead-form" action="/.netlify/functions/submit-lead" method="POST" data-netlify="true">
+        <!-- Salesforce Web-To-Lead hidden fields -->
+        <input type="hidden" name="oid" value="00Dfo000001KoHp" />
+        <input type="hidden" name="retURL" value="/thank-you.html" />
+        <input type="hidden" name="debug" value="1" />
+        
+        <!-- Netlify form detection -->
+        <input type="hidden" name="form-name" value="backup-lead-form" />
+        
+        <!-- Required Company field for Salesforce -->
+        <input type="hidden" name="company" value="Residential Customer" />
 
-      <!-- Required Company field for Salesforce -->
-      <input type="hidden" name="company" value="Residential Customer" />
+        <div class="form-row">
+          <div class="form-group">
+            <label for="first_name">First Name <span class="required">*</span></label>
+            <input id="first_name" name="first_name" type="text" required />
+          </div>
 
-      <label for="first_name">First Name</label>
-      <input id="first_name" name="first_name" type="text" required />
+          <div class="form-group">
+            <label for="last_name">Last Name <span class="required">*</span></label>
+            <input id="last_name" name="last_name" type="text" required />
+          </div>
+        </div>
 
-      <label for="last_name">Last Name</label>
-      <input id="last_name" name="last_name" type="text" required />
+        <div class="form-group">
+          <label for="street">Address <span class="required">*</span></label>
+          <input id="street" name="street" type="text" required />
+        </div>
 
-      <label for="street">Address</label>
-      <input id="street" name="street" type="text" />
+        <div class="form-row">
+          <div class="form-group">
+            <label for="city">City <span class="required">*</span></label>
+            <input id="city" name="city" type="text" required />
+          </div>
 
-      <label for="city">City</label>
-      <input id="city" name="city" type="text" />
+          <div class="form-group">
+            <label for="state">State <span class="required">*</span></label>
+            <input id="state" name="state" type="text" required />
+          </div>
+        </div>
 
-      <label for="state">State</label>
-      <input id="state" name="state" type="text" />
+        <div class="form-group">
+          <label for="zip">Zip Code <span class="required">*</span></label>
+          <input id="zip" name="zip" type="text" required />
+        </div>
 
-      <label for="zip">Zip Code</label>
-      <input id="zip" name="zip" type="text" />
+        <div class="form-group">
+          <label for="email">Email <span class="required">*</span></label>
+          <input id="email" name="email" type="email" required />
+        </div>
 
-      <label for="email">Email</label>
-      <input id="email" name="email" type="email" required />
+        <div class="form-group">
+          <label for="phone">Phone <span class="required">*</span></label>
+          <input id="phone" name="phone" type="tel" required />
+        </div>
 
-      <label for="phone">Phone</label>
-      <input id="phone" name="phone" type="tel" required />
+        <div class="form-group">
+          <label for="Lead_Source_Category__c">Lead Source Category <span class="required">*</span></label>
+          <select id="Lead_Source_Category__c" name="Lead_Source_Category__c" required>
+            <option value="">-- Select One --</option>
+            <option value="Home Show">Home Show</option>
+            <option value="Fair">Fair</option>
+            <option value="Builder">Builder</option>
+            <option value="Referral">Referral</option>
+            <option value="Home Depot">Home Depot</option>
+            <option value="Costco">Costco</option>
+            <option value="Angi">Angi</option>
+            <option value="Website / SEO">Website / SEO</option>
+            <option value="Facebook / Social">Facebook / Social</option>
+            <option value="Google">Google</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
 
-      <label for="00Nfo000001k1ID">Lead Source Category</label>
-      <select id="00Nfo000001k1ID" name="00Nfo000001k1ID" required>
-        <option value="">-- Select One --</option>
-        <option>Home Show</option>
-        <option>Fair</option>
-        <option>Builder</option>
-        <option>Referral</option>
-        <option>Home Depot</option>
-        <option>Costco</option>
-        <option>Angi</option>
-        <option>Website / SEO</option>
-        <option>Facebook / Social</option>
-        <option>Google</option>
-        <option>Other</option>
-      </select>
+        <div class="form-group">
+          <label for="Lead_Source_Detail__c">Lead Source Detail <span class="required">*</span></label>
+          <select id="Lead_Source_Detail__c" name="Lead_Source_Detail__c" required>
+            <option value="">-- Select One --</option>
+            <option value="Belman">Belman</option>
+            <option value="Bielinski">Bielinski</option>
+            <option value="Espire">Espire</option>
+            <option value="Fox Cities Home & Garden Show">Fox Cities Home & Garden Show</option>
+            <option value="Green Bay Home & Lifestyle">Green Bay Home & Lifestyle</option>
+            <option value="Green Bay Pet Expo">Green Bay Pet Expo</option>
+            <option value="Joseph Douglas">Joseph Douglas</option>
+            <option value="Kings Way">Kings Way</option>
+            <option value="Madison Build, Remodel & Landscape Show">Madison Build, Remodel & Landscape Show</option>
+            <option value="Mastercraft">Mastercraft</option>
+            <option value="NARI Madison - Build & Remodel Expo">NARI Madison - Build & Remodel Expo</option>
+            <option value="NARI Spring Home Improvement Show">NARI Spring Home Improvement Show</option>
+            <option value="New Berlin Safety Saturday">New Berlin Safety Saturday</option>
+            <option value="Ozaukee County Fair">Ozaukee County Fair</option>
+            <option value="Realtor's Home & Garden Show">Realtor's Home & Garden Show</option>
+            <option value="WAHI Spring Training Seminar">WAHI Spring Training Seminar</option>
+            <option value="Washington County Builders Expo">Washington County Builders Expo</option>
+            <option value="Washington County Fair">Washington County Fair</option>
+            <option value="Waupaca Home Improvement">Waupaca Home Improvement</option>
+          </select>
+        </div>
 
-      <label for="00Nfo000001k1II">Lead Source Detail</label>
-      <select id="00Nfo000001k1II" name="00Nfo000001k1II">
-        <option value="">-- Select One --</option>
-        <option>Belman</option>
-        <option>Bielinski</option>
-        <option>Espire</option>
-        <option>Fox Cities Home & Garden Show</option>
-        <option>Green Bay Home & Lifestyle</option>
-        <option>Green Bay Pet Expo</option>
-        <option>Joseph Douglas</option>
-        <option>Kings Way</option>
-        <option>Madison Build, Remodel & Landscape Show</option>
-        <option>Mastercraft</option>
-        <option>NARI Madison - Build & Remodel Expo</option>
-        <option>NARI Spring Home Improvement Show</option>
-        <option>New Berlin Safety Saturday</option>
-        <option>Ozaukee County Fair</option>
-        <option>Realtor's Home & Garden Show</option>
-        <option>WAHI Spring Training Seminar</option>
-        <option>Washington County Builders Expo</option>
-        <option>Washington County Fair</option>
-        <option>Waupaca Home Improvement</option>
-        <option>Waupaca Home & Outdoor Summer</option>
-        <option>Waukesha County Fair</option>
-        <option>Westridge</option>
-        <option>Wisconsin State Fair</option>
-      </select>
+        <div class="form-group">
+          <label for="Assigned_Sales_Rep__c">Assigned Sales Rep</label>
+          <select id="Assigned_Sales_Rep__c" name="Assigned_Sales_Rep__c">
+            <option value="">-- Select --</option>
+            <option value="Aiden Abramowski">Aiden Abramowski</option>
+            <option value="Alan Wickesberg">Alan Wickesberg</option>
+            <option value="Ashley Luetke">Ashley Luetke</option>
+            <option value="Barrett Ruis">Barrett Ruis</option>
+            <option value="Brian Hasenbush">Brian Hasenbush</option>
+            <option value="Dane Warren">Dane Warren</option>
+            <option value="Dominic Balistreri">Dominic Balistreri</option>
+            <option value="Emily Roamer">Emily Roamer</option>
+            <option value="Eric Ritger">Eric Ritger</option>
+            <option value="George Booth">George Booth</option>
+            <option value="James Evans">James Evans</option>
+            <option value="Jennifer Campbell">Jennifer Campbell</option>
+            <option value="Jerad Warren">Jerad Warren</option>
+            <option value="Jill Polifka">Jill Polifka</option>
+            <option value="Jo Bort">Jo Bort</option>
+            <option value="Joshua Ostby">Joshua Ostby</option>
+            <option value="Justin Bahr">Justin Bahr</option>
+            <option value="Kyle Italis">Kyle Italis</option>
+            <option value="Lacey Davis">Lacey Davis</option>
+          </select>
+        </div>
 
-      <label for="00Nf0000001k1IM">Assigned Sales Rep</label>
-      <select id="00Nf0000001k1IM" name="00Nf0000001k1IM">
-        <option value="">-- Select --</option>
-        <option>Aiden Abramowski</option>
-        <option>Alan Wickesberg</option>
-        <option>Ashley Luetke</option>
-        <option>Barrett Ruis</option>
-        <option>Brian Hasenbush</option>
-        <option>Dane Warren</option>
-        <option>Dominic Balistreri</option>
-        <option>Emily Roamer</option>
-        <option>Eric Ritger</option>
-        <option>George Booth</option>
-        <option>James Evans</option>
-        <option>Jennifer Campbell</option>
-        <option>Jerad Warren</option>
-        <option>Jill Polifka</option>
-        <option>Jo Bort</option>
-        <option>Joshua Ostby</option>
-        <option>Justin Bahr</option>
-        <option>Kyle Italis</option>
-        <option>Lacey Davis</option>
-        <option>Liam Burczyk</option>
-        <option>Lola Warren</option>
-        <option>Mark Burmeister</option>
-        <option>Mario Balistreri</option>
-        <option>Maye Naskovitch</option>
-        <option>Mike Sylvester</option>
-        <option>Patty Van Allen</option>
-        <option>Rick Dahl</option>
-        <option>Robyn Drajeske</option>
-        <option>Scott Campbell</option>
-        <option>Scott Crescenti</option>
-        <option>Tom Dougherty</option>
-        <option>Will Hietpas</option>
-        <option>Xavier Mielke</option>
-      </select>
+        <div class="form-group">
+          <label for="Service_s_of_Interest__c">Service(s) of Interest <span class="required">*</span></label>
+          <select id="Service_s_of_Interest__c" name="Service_s_of_Interest__c" required>
+            <option value="">-- Select --</option>
+            <option value="Radon Testing">Radon Testing</option>
+            <option value="Radon Mitigation">Radon Mitigation</option>
+            <option value="Duct Cleaning">Duct Cleaning</option>
+            <option value="Aeroseal">Aeroseal</option>
+            <option value="Garage Floor Coating">Garage Floor Coating</option>
+            <option value="Basement Floor Coating">Basement Floor Coating</option>
+            <option value="Patio Floor Coating">Patio Floor Coating</option>
+            <option value="Custom Closets">Custom Closets</option>
+            <option value="Window Treatments">Window Treatments</option>
+            <option value="Smart Home/AV/Security">Smart Home/AV/Security</option>
+            <option value="Multiple (Concierge Services)">Multiple (Concierge Services)</option>
+          </select>
+        </div>
 
-      <label for="00Nfo000001k1IE">Service(s) of Interest</label>
-      <select id="00Nfo000001k1IE" name="00Nfo000001k1IE" required>
-        <option value="">-- Select --</option>
-        <option>Radon Testing</option>
-        <option>Radon Mitigation</option>
-        <option>Duct Cleaning</option>
-        <option>Aeroseal</option>
-        <option>Garage Floor Coating</option>
-        <option>Basement Floor Coating</option>
-        <option>Patio Floor Coating</option>
-        <option>Custom Closets</option>
-        <option>Window Treatments</option>
-        <option>Smart Home/AV/Security</option>
-        <option>Multiple (Concierge Services)</option>
-      </select>
-
-      <button type="submit">Submit</button>
-    </form>
+        <button type="submit" class="submit-btn">Submit</button>
+      </form>
+    </div>
   </div>
 </body>
 </html>
-
