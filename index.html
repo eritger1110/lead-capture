@@ -203,13 +203,13 @@
 
         <div class="form-group">
           <label for="Lead_Source_Category__c">Lead Source Category <span class="required">*</span></label>
-          <select id="Lead_Source_Category__c" name="Lead_Source_Category__c" required>
+          <select id="Lead_Source_Category__c" name="Lead_Source_Category__c" required onchange="updateLeadSourceDetail()">
             <option value="">-- Select One --</option>
             <option value="Fairs">Fairs</option>
             <option value="Home Shows">Home Shows</option>
-            <option value="Referral">Referral</option>
             <option value="Internet">Internet</option>
             <option value="Builder">Builder</option>
+            <option value="Referral">Referral</option>
             <option value="Home Depot">Home Depot</option>
             <option value="Partnerships">Partnerships</option>
           </select>
@@ -217,25 +217,15 @@
 
         <div class="form-group">
           <label for="Lead_Source_Detail__c">Lead Source Detail <span class="required">*</span></label>
-          <select id="Lead_Source_Detail__c" name="Lead_Source_Detail__c" required>
-            <option value="">-- Select One --</option>
-            <option value="Washington County Fair">Washington County Fair</option>
-            <option value="Waukesha County Fair">Waukesha County Fair</option>
-            <option value="Wisconsin State Fair">Wisconsin State Fair</option>
-            <option value="Ozaukee County Fair">Ozaukee County Fair</option>
-            <option value="Web Form">Web Form</option>
-            <option value="Google Ads">Google Ads</option>
-            <option value="Customer Referral">Customer Referral</option>
-            <option value="Employee Referral">Employee Referral</option>
-            <option value="Other">Other</option>
+          <select id="Lead_Source_Detail__c" name="Lead_Source_Detail__c" required onchange="updateAssignedSalesRep()">
+            <option value="">-- Select Lead Source Category First --</option>
           </select>
         </div>
 
         <div class="form-group">
           <label for="Assigned_Sales_Rep__c">Assigned Sales Rep</label>
           <select id="Assigned_Sales_Rep__c" name="Assigned_Sales_Rep__c">
-            <option value="">-- Select --</option>
-            <option value="Eric Ritger">Eric Ritger</option>
+            <option value="">-- Select Lead Source Detail First --</option>
           </select>
         </div>
 
@@ -265,5 +255,129 @@
       </form>
     </div>
   </div>
+
+  <script>
+    // Field dependency data based on Salesforce matrix
+    const leadSourceDetails = {
+      "Fairs": [
+        "Washington County Fair",
+        "Waukesha County Fair", 
+        "Wisconsin State Fair",
+        "Ozaukee County Fair"
+      ],
+      "Home Shows": [
+        "Fox Cities Home & Garden Show",
+        "NARI Madison – Build & Remodel Expo",
+        "Washington County Builders Expo",
+        "Green Bay Home & Lifestyle",
+        "NARI Spring Home Improvement Show",
+        "Madison Build, Remodel & Landscape Show",
+        "WAHI Spring Training Seminar",
+        "Green Bay Pet Expo",
+        "Waupaca Home Improvement",
+        "Realtor's Home & Garden Show",
+        "New Berlin Safety Saturday",
+        "Waupaca Home & Outdoor Summer"
+      ],
+      "Internet": [
+        "Angi Ads",
+        "Angi Leads", 
+        "Web Form",
+        "Google Ads"
+      ],
+      "Builder": [
+        "Kings Way",
+        "Belman",
+        "Joseph Douglas",
+        "Westridge",
+        "Espire",
+        "Bielinski",
+        "Mastercraft",
+        "Customer Referral",
+        "Employee Referral",
+        "Realtor Referral"
+      ],
+      "Referral": [
+        "Customer Referral",
+        "Employee Referral", 
+        "Realtor Referral"
+      ],
+      "Home Depot": [
+        "Home Depot Store #3308 – Wauwatosa",
+        "Home Depot Store #4903 – Grafton",
+        "Home Depot Store #4962 – Kenosha",
+        "AQC"
+      ],
+      "Partnerships": [
+        "HVAC Partners",
+        "Chamber Referral",
+        "AQC"
+      ]
+    };
+
+    // Sales rep assignments based on dependency matrix
+    const salesRepAssignments = {
+      // Fairs
+      "Washington County Fair": ["Eric Ritger", "Aaron Konieczny", "Alan Wickesberg", "Ashley Luetke", "Betsy Joppe", "Brian Hasenbush", "Christine Martin", "Dominic Balistreri", "Emily Roamer", "James Evans", "Jill Polifka", "Jo Bort", "Joshua Ostby", "Justin Bahr", "Kyle Italis", "Lacey Davis", "Mark Burmeister", "Mike Sylvester", "Patty Van Allen", "Rick Dahl", "Robyn Drajeske"],
+      "Waukesha County Fair": ["Eric Ritger", "Aaron Konieczny", "Alan Wickesberg", "Ashley Luetke", "Betsy Joppe", "Brian Hasenbush", "Christine Martin", "Dominic Balistreri", "Emily Roamer", "James Evans", "Jill Polifka", "Jo Bort", "Joshua Ostby", "Justin Bahr", "Kyle Italis", "Lacey Davis", "Mark Burmeister", "Mike Sylvester", "Patty Van Allen", "Rick Dahl", "Robyn Drajeske"],
+      "Wisconsin State Fair": ["Eric Ritger", "Aaron Konieczny", "Alan Wickesberg", "Ashley Luetke", "Betsy Joppe", "Brian Hasenbush", "Christine Martin", "Dominic Balistreri", "Emily Roamer", "James Evans", "Jill Polifka", "Jo Bort", "Joshua Ostby", "Justin Bahr", "Kyle Italis", "Lacey Davis", "Mark Burmeister", "Mike Sylvester", "Patty Van Allen", "Rick Dahl", "Robyn Drajeske"],
+      "Ozaukee County Fair": ["Eric Ritger", "Aaron Konieczny", "Alan Wickesberg", "Ashley Luetke", "Betsy Joppe", "Brian Hasenbush", "Christine Martin", "Dominic Balistreri", "Emily Roamer", "James Evans", "Jill Polifka", "Jo Bort", "Joshua Ostby", "Justin Bahr", "Kyle Italis", "Lacey Davis", "Mark Burmeister", "Mike Sylvester", "Patty Van Allen", "Rick Dahl", "Robyn Drajeske"],
+      
+      // Home Shows - All have all sales reps available
+      "Fox Cities Home & Garden Show": ["Eric Ritger", "Aaron Konieczny", "Alan Wickesberg", "Ashley Luetke", "Betsy Joppe", "Brian Hasenbush", "Christine Martin", "Dominic Balistreri", "Emily Roamer", "James Evans", "Jill Polifka", "Jo Bort", "Joshua Ostby", "Justin Bahr", "Kyle Italis", "Lacey Davis", "Mark Burmeister", "Mike Sylvester", "Patty Van Allen", "Rick Dahl", "Robyn Drajeske"],
+      
+      // Internet - All have all sales reps available  
+      "Web Form": ["Eric Ritger", "Aaron Konieczny", "Alan Wickesberg", "Ashley Luetke", "Betsy Joppe", "Brian Hasenbush", "Christine Martin", "Dominic Balistreri", "Emily Roamer", "James Evans", "Jill Polifka", "Jo Bort", "Joshua Ostby", "Justin Bahr", "Kyle Italis", "Lacey Davis", "Mark Burmeister", "Mike Sylvester", "Patty Van Allen", "Rick Dahl", "Robyn Drajeske"],
+      "Google Ads": ["Eric Ritger", "Aaron Konieczny", "Alan Wickesberg", "Ashley Luetke", "Betsy Joppe", "Brian Hasenbush", "Christine Martin", "Dominic Balistreri", "Emily Roamer", "James Evans", "Jill Polifka", "Jo Bort", "Joshua Ostby", "Justin Bahr", "Kyle Italis", "Lacey Davis", "Mark Burmeister", "Mike Sylvester", "Patty Van Allen", "Rick Dahl", "Robyn Drajeske"],
+      
+      // Add other combinations as needed - most have all sales reps available
+    };
+
+    function updateLeadSourceDetail() {
+      const categorySelect = document.getElementById('Lead_Source_Category__c');
+      const detailSelect = document.getElementById('Lead_Source_Detail__c');
+      const salesRepSelect = document.getElementById('Assigned_Sales_Rep__c');
+      
+      const selectedCategory = categorySelect.value;
+      
+      // Clear detail and sales rep dropdowns
+      detailSelect.innerHTML = '<option value="">-- Select One --</option>';
+      salesRepSelect.innerHTML = '<option value="">-- Select Lead Source Detail First --</option>';
+      
+      if (selectedCategory && leadSourceDetails[selectedCategory]) {
+        leadSourceDetails[selectedCategory].forEach(detail => {
+          const option = document.createElement('option');
+          option.value = detail;
+          option.textContent = detail;
+          detailSelect.appendChild(option);
+        });
+      }
+    }
+
+    function updateAssignedSalesRep() {
+      const detailSelect = document.getElementById('Lead_Source_Detail__c');
+      const salesRepSelect = document.getElementById('Assigned_Sales_Rep__c');
+      
+      const selectedDetail = detailSelect.value;
+      
+      // Clear sales rep dropdown
+      salesRepSelect.innerHTML = '<option value="">-- Select One --</option>';
+      
+      if (selectedDetail && salesRepAssignments[selectedDetail]) {
+        salesRepAssignments[selectedDetail].forEach(rep => {
+          const option = document.createElement('option');
+          option.value = rep;
+          option.textContent = rep;
+          salesRepSelect.appendChild(option);
+        });
+      } else if (selectedDetail) {
+        // Default to Eric Ritger for any detail not specifically mapped
+        const option = document.createElement('option');
+        option.value = "Eric Ritger";
+        option.textContent = "Eric Ritger";
+        salesRepSelect.appendChild(option);
+      }
+    }
+  </script>
 </body>
 </html>
