@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TEST 1: Lead Source Category Only</title>
+  <title>TEST 2: Lead Source Category + Detail</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -63,32 +63,32 @@
 <body>
   <div class="container">
     <div class="test-info">
-      <strong>TEST 1: Lead Source Category Only</strong>  
+      <strong>TEST 2: Lead Source Category + Detail</strong>  
 
-      This form tests ONLY the Lead_Source_Category__c custom field.  
+      This form tests Lead_Source_Category__c + Lead_Source_Detail__c together.  
 
-      If this works, we know this field is OK.
+      If Test 1 worked but this fails, we know Lead_Source_Detail__c is the problem.
     </div>
     
-    <h1>Test Form 1</h1>
+    <h1>Test Form 2</h1>
     
-    <form name="test-form-1" action="/.netlify/functions/submit-lead" method="POST" data-netlify="true">
+    <form name="test-form-2" action="/.netlify/functions/submit-lead" method="POST" data-netlify="true">
       <!-- Salesforce Web-To-Lead hidden fields -->
       <input type="hidden" name="oid" value="00Dfo000001KoHp" />
       <input type="hidden" name="retURL" value="/thank-you.html" />
       <input type="hidden" name="debug" value="1" />
       <input type="hidden" name="status" value="New" />
-      <input type="hidden" name="form-name" value="test-form-1" />
+      <input type="hidden" name="form-name" value="test-form-2" />
 
       <!-- Required Standard Fields -->
       <div class="form-group">
         <label for="first_name">First Name *</label>
-        <input id="first_name" name="first_name" type="text" value="Test1Eric" required />
+        <input id="first_name" name="first_name" type="text" value="Test2Eric" required />
       </div>
 
       <div class="form-group">
         <label for="last_name">Last Name *</label>
-        <input id="last_name" name="last_name" type="text" value="Test1Ritger" required />
+        <input id="last_name" name="last_name" type="text" value="Test2Ritger" required />
       </div>
 
       <div class="form-group">
@@ -98,30 +98,30 @@
 
       <div class="form-group">
         <label for="email">Email *</label>
-        <input id="email" name="email" type="email" value="test1@example.com" required />
+        <input id="email" name="email" type="email" value="test2@example.com" required />
       </div>
 
       <div class="form-group">
         <label for="phone">Phone *</label>
-        <input id="phone" name="phone" type="tel" value="555-555-5551" required />
+        <input id="phone" name="phone" type="tel" value="555-555-5552" required />
       </div>
 
-      <!-- ONLY ONE CUSTOM FIELD: Lead Source Category -->
+      <!-- TWO CUSTOM FIELDS: Lead Source Category + Detail -->
       <div class="form-group">
         <label for="Lead_Source_Category__c">Lead Source Category *</label>
         <select id="Lead_Source_Category__c" name="Lead_Source_Category__c" required>
-          <option value="">-- Select One --</option>
           <option value="Fairs" selected>Fairs</option>
-          <option value="Home Shows">Home Shows</option>
-          <option value="Internet">Internet</option>
-          <option value="Builder">Builder</option>
-          <option value="Referral">Referral</option>
-          <option value="Home Depot">Home Depot</option>
-          <option value="Partnerships">Partnerships</option>
         </select>
       </div>
 
-      <button type="submit">Submit Test 1</button>
+      <div class="form-group">
+        <label for="Lead_Source_Detail__c">Lead Source Detail *</label>
+        <select id="Lead_Source_Detail__c" name="Lead_Source_Detail__c" required>
+          <option value="Washington County Fair" selected>Washington County Fair</option>
+        </select>
+      </div>
+
+      <button type="submit">Submit Test 2</button>
     </form>
   </div>
 </body>
