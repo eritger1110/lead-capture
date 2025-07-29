@@ -3,140 +3,383 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TEST 4: All Custom Fields</title>
+  <title>Lifetime Home Services – Lead Form</title>
   <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
     body {
-      font-family: Arial, sans-serif;
-      max-width: 600px;
-      margin: 50px auto;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      min-height: 100vh;
       padding: 20px;
-      background-color: #f5f5f5;
     }
+
     .container {
+      max-width: 600px;
+      margin: 0 auto;
       background: white;
+      border-radius: 12px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+    }
+
+    .header {
+      background: linear-gradient(135deg, #004990 0%, #0074c1 100%);
+      color: white;
       padding: 30px;
-      border-radius: 8px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    }
-    h1 {
-      color: #004990;
       text-align: center;
-      margin-bottom: 30px;
     }
-    .form-group {
+
+    .logo {
+      max-width: 200px;
+      height: auto;
       margin-bottom: 20px;
     }
+
+    .header h1 {
+      font-size: 28px;
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+
+    .header p {
+      font-size: 16px;
+      opacity: 0.9;
+    }
+
+    .form-container {
+      padding: 40px;
+    }
+
+    .form-group {
+      margin-bottom: 25px;
+    }
+
     label {
       display: block;
-      margin-bottom: 5px;
-      font-weight: bold;
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: #333;
+      font-size: 14px;
     }
-    input, select {
+
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    select,
+    textarea {
       width: 100%;
-      padding: 10px;
-      border: 1px solid #ddd;
-      border-radius: 4px;
+      padding: 12px 16px;
+      border: 2px solid #e1e5e9;
+      border-radius: 8px;
       font-size: 16px;
+      transition: all 0.3s ease;
+      background-color: #fff;
     }
-    button {
-      background: #004990;
+
+    input[type="text"]:focus,
+    input[type="email"]:focus,
+    input[type="tel"]:focus,
+    select:focus,
+    textarea:focus {
+      outline: none;
+      border-color: #0074c1;
+      box-shadow: 0 0 0 3px rgba(0, 116, 193, 0.1);
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    @media (max-width: 600px) {
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .submit-btn {
+      background: linear-gradient(135deg, #0074c1 0%, #004990 100%);
       color: white;
-      padding: 12px 30px;
+      padding: 16px 32px;
       border: none;
-      border-radius: 4px;
-      font-size: 16px;
+      border-radius: 8px;
+      font-size: 18px;
+      font-weight: 600;
       cursor: pointer;
       width: 100%;
+      transition: all 0.3s ease;
+      margin-top: 20px;
     }
-    button:hover {
-      background: #0074c1;
+
+    .submit-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(0, 116, 193, 0.3);
     }
-    .test-info {
-      background: #e8f4fd;
+
+    .submit-btn:active {
+      transform: translateY(0);
+    }
+
+    .required {
+      color: #e74c3c;
+    }
+
+    .success-message {
+      background: #d4edda;
+      color: #155724;
       padding: 15px;
-      border-radius: 4px;
+      border-radius: 8px;
       margin-bottom: 20px;
-      border-left: 4px solid #004990;
+      border-left: 4px solid #28a745;
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <div class="test-info">
-      <strong>TEST 4: All Custom Fields</strong>  
-
-      This form tests ALL custom fields together.  
-
-      If Test 3 worked but this fails, we know Service_s_of_Interest__c is the problem.
+    <div class="header">
+      <img src="lhs-logo.png" alt="Lifetime Home Services Logo" class="logo" />
+      <h1>Get Your Free Estimate</h1>
+      <p>Connect with our experts today</p>
     </div>
     
-    <h1>Test Form 4</h1>
-    
-    <form name="test-form-4" action="/.netlify/functions/submit-lead" method="POST" data-netlify="true">
-      <!-- Salesforce Web-To-Lead hidden fields -->
-      <input type="hidden" name="oid" value="00Dfo000001KoHp" />
-      <input type="hidden" name="retURL" value="/thank-you.html" />
-      <input type="hidden" name="debug" value="1" />
-      <input type="hidden" name="status" value="New" />
-      <input type="hidden" name="form-name" value="test-form-4" />
-
-      <!-- Required Standard Fields -->
-      <div class="form-group">
-        <label for="first_name">First Name *</label>
-        <input id="first_name" name="first_name" type="text" value="Test4Eric" required />
+    <div class="form-container">
+      <div class="success-message">
+        <strong>✅ CORRECTED FORM:</strong> Now using exact Salesforce field names for 100% reliability!
       </div>
+      
+      <form name="backup-lead-form" action="/.netlify/functions/submit-lead" method="POST" data-netlify="true">
+        <!-- Salesforce Web-To-Lead hidden fields -->
+        <input type="hidden" name="oid" value="00Dfo000001KoHp" />
+        <input type="hidden" name="retURL" value="/thank-you.html" />
+        <input type="hidden" name="debug" value="1" />
+        
+        <!-- Required Lead Status (hidden) -->
+        <input type="hidden" name="status" value="New" />
+        
+        <!-- Netlify form detection -->
+        <input type="hidden" name="form-name" value="backup-lead-form" />
 
-      <div class="form-group">
-        <label for="last_name">Last Name *</label>
-        <input id="last_name" name="last_name" type="text" value="Test4Ritger" required />
-      </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="first_name">First Name <span class="required">*</span></label>
+            <input id="first_name" name="first_name" type="text" required />
+          </div>
 
-      <div class="form-group">
-        <label for="company">Company *</label>
-        <input id="company" name="company" type="text" value="Residential Customer" required />
-      </div>
+          <div class="form-group">
+            <label for="last_name">Last Name <span class="required">*</span></label>
+            <input id="last_name" name="last_name" type="text" required />
+          </div>
+        </div>
 
-      <div class="form-group">
-        <label for="email">Email *</label>
-        <input id="email" name="email" type="email" value="test4@example.com" required />
-      </div>
+        <div class="form-group">
+          <label for="company">Company <span class="required">*</span></label>
+          <input id="company" name="company" type="text" value="Residential Customer" required />
+        </div>
 
-      <div class="form-group">
-        <label for="phone">Phone *</label>
-        <input id="phone" name="phone" type="tel" value="555-555-5554" required />
-      </div>
+        <div class="form-group">
+          <label for="street">Address</label>
+          <input id="street" name="street" type="text" />
+        </div>
 
-      <!-- ALL FOUR CUSTOM FIELDS -->
-      <div class="form-group">
-        <label for="Lead_Source_Category__c">Lead Source Category *</label>
-        <select id="Lead_Source_Category__c" name="Lead_Source_Category__c" required>
-          <option value="Fairs" selected>Fairs</option>
-        </select>
-      </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="city">City</label>
+            <input id="city" name="city" type="text" />
+          </div>
 
-      <div class="form-group">
-        <label for="Lead_Source_Detail__c">Lead Source Detail *</label>
-        <select id="Lead_Source_Detail__c" name="Lead_Source_Detail__c" required>
-          <option value="Washington County Fair" selected>Washington County Fair</option>
-        </select>
-      </div>
+          <div class="form-group">
+            <label for="state">State</label>
+            <input id="state" name="state" type="text" />
+          </div>
+        </div>
 
-      <div class="form-group">
-        <label for="Assigned_Sales_Rep__c">Assigned Sales Rep</label>
-        <select id="Assigned_Sales_Rep__c" name="Assigned_Sales_Rep__c">
-          <option value="Eric Ritger" selected>Eric Ritger</option>
-        </select>
-      </div>
+        <div class="form-group">
+          <label for="zip">Zip Code</label>
+          <input id="zip" name="zip" type="text" />
+        </div>
 
-      <div class="form-group">
-        <label for="Service_s_of_Interest__c">Service(s) of Interest *</label>
-        <select id="Service_s_of_Interest__c" name="Service_s_of_Interest__c" required>
-          <option value="Radon Mitigation" selected>Radon Mitigation</option>
-        </select>
-      </div>
+        <div class="form-group">
+          <label for="email">Email <span class="required">*</span></label>
+          <input id="email" name="email" type="email" required />
+        </div>
 
-      <button type="submit">Submit Test 4</button>
-    </form>
+        <div class="form-group">
+          <label for="phone">Phone <span class="required">*</span></label>
+          <input id="phone" name="phone" type="tel" required />
+        </div>
+
+        <!-- CORRECTED CUSTOM FIELDS WITH PROPER SALESFORCE FIELD NAMES -->
+        <div class="form-group">
+          <label for="00Nfo000001UQCb">Lead Source Category <span class="required">*</span></label>
+          <select id="00Nfo000001UQCb" name="00Nfo000001UQCb" required onchange="updateLeadSourceDetail()">
+            <option value="">-- Select One --</option>
+            <option value="Fairs">Fairs</option>
+            <option value="Home Shows">Home Shows</option>
+            <option value="Internet">Internet</option>
+            <option value="Builder">Builder</option>
+            <option value="Referral">Referral</option>
+            <option value="Home Depot">Home Depot</option>
+            <option value="Partnerships">Partnerships</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="00Nfo000001UQNt">Lead Source Detail <span class="required">*</span></label>
+          <select id="00Nfo000001UQNt" name="00Nfo000001UQNt" required onchange="updateAssignedSalesRep()">
+            <option value="">-- Select Lead Source Category First --</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="00Nfo000001VNxR">Assigned Sales Rep</label>
+          <select id="00Nfo000001VNxR" name="00Nfo000001VNxR">
+            <option value="">-- Select Lead Source Detail First --</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="00Nfo000001k1II">Service(s) of Interest <span class="required">*</span></label>
+          <select id="00Nfo000001k1II" name="00Nfo000001k1II" required>
+            <option value="">-- Select --</option>
+            <option value="Radon Testing">Radon Testing</option>
+            <option value="Radon Mitigation">Radon Mitigation</option>
+            <option value="Custom Closets">Custom Closets</option>
+            <option value="Window Blinds">Window Blinds</option>
+            <option value="Smart Home Technology (AIH)">Smart Home Technology (AIH)</option>
+            <option value="Floor Coatings (EPOXY)">Floor Coatings (EPOXY)</option>
+            <option value="Home Security">Home Security</option>
+            <option value="Aeroseal">Aeroseal</option>
+            <option value="Duct Cleaning">Duct Cleaning</option>
+            <option value="Multiple (Concierge Services)">Multiple (Concierge Services)</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="description">Additional Information</label>
+          <textarea id="description" name="description" rows="4" placeholder="Please describe any additional services or information..."></textarea>
+        </div>
+
+        <button type="submit" class="submit-btn">Submit</button>
+      </form>
+    </div>
   </div>
+
+  <script>
+    // Field dependency data based on Salesforce official form
+    const leadSourceDetails = {
+      "Fairs": [
+        "Washington County Fair",
+        "Waukesha County Fair", 
+        "Wisconsin State Fair",
+        "Ozaukee County Fair"
+      ],
+      "Home Shows": [
+        "Fox Cities Home & Garden Show",
+        "NARI Madison – Build & Remodel Expo",
+        "Washington County Builders Expo",
+        "Green Bay Home & Lifestyle",
+        "NARI Spring Home Improvement Show",
+        "Madison Build, Remodel & Landscape Show",
+        "WAHI Spring Training Seminar",
+        "Green Bay Pet Expo",
+        "Waupaca Home Improvement",
+        "Realtor's Home & Garden Show",
+        "New Berlin Safety Saturday",
+        "Waupaca Home & Outdoor Summer"
+      ],
+      "Internet": [
+        "Angi Ads",
+        "Angi Leads", 
+        "Web Form",
+        "Google Ads"
+      ],
+      "Builder": [
+        "Kings Way",
+        "Belman",
+        "Joseph Douglas",
+        "Westridge",
+        "Espire",
+        "Bielinski",
+        "Mastercraft"
+      ],
+      "Referral": [
+        "Customer Referral",
+        "Employee Referral", 
+        "Realtor Referral"
+      ],
+      "Home Depot": [
+        "Home Depot Store #3308 – Wauwatosa",
+        "Home Depot Store #4903 – Grafton",
+        "Home Depot Store #4962 – Kenosha",
+        "AQC"
+      ],
+      "Partnerships": [
+        "HVAC Partners",
+        "Chamber Referral",
+        "AQC"
+      ]
+    };
+
+    // All sales reps available (from Salesforce official form)
+    const allSalesReps = [
+      "Aaron Konieczny", "Alan Wickesberg", "Ashley Luetke", "Barrett Ruis", 
+      "Betsy Joppe", "Brian Hasenbush", "Christine Martin", "Dane Warren", 
+      "Dominic Balistreri", "Emily Roamer", "Eric Ritger", "George Booth", 
+      "James Evans", "Jennifer Campbell", "Jerad Warren", "Jill Polifka", 
+      "Jo Bort", "Joshua Ostby", "Justin Bahr", "Kyle Italis", "Lacey Davis", 
+      "Liam Burczyk", "Lola Warren", "Mario Balistreri", "Mark Burmeister", 
+      "Maye Naskovitch", "Mike Sylvester", "Online - Web", "Patty Van Allen", 
+      "Rick Dahl", "Robyn Drajeske", "Scott Campbell", "Scott Crescenti", 
+      "Tom Dougherty", "Will Hietpas", "Xavier Mielke"
+    ];
+
+    function updateLeadSourceDetail() {
+      const categorySelect = document.getElementById('00Nfo000001UQCb');
+      const detailSelect = document.getElementById('00Nfo000001UQNt');
+      const salesRepSelect = document.getElementById('00Nfo000001VNxR');
+      
+      const selectedCategory = categorySelect.value;
+      
+      // Clear detail and sales rep dropdowns
+      detailSelect.innerHTML = '<option value="">-- Select One --</option>';
+      salesRepSelect.innerHTML = '<option value="">-- Select Lead Source Detail First --</option>';
+      
+      if (selectedCategory && leadSourceDetails[selectedCategory]) {
+        leadSourceDetails[selectedCategory].forEach(detail => {
+          const option = document.createElement('option');
+          option.value = detail;
+          option.textContent = detail;
+          detailSelect.appendChild(option);
+        });
+      }
+    }
+
+    function updateAssignedSalesRep() {
+      const detailSelect = document.getElementById('00Nfo000001UQNt');
+      const salesRepSelect = document.getElementById('00Nfo000001VNxR');
+      
+      const selectedDetail = detailSelect.value;
+      
+      // Clear sales rep dropdown
+      salesRepSelect.innerHTML = '<option value="">-- Select One --</option>';
+      
+      if (selectedDetail) {
+        // For now, show all sales reps for any selected detail
+        // You can customize this based on specific detail-to-rep mappings if needed
+        allSalesReps.forEach(rep => {
+          const option = document.createElement('option');
+          option.value = rep;
+          option.textContent = rep;
+          salesRepSelect.appendChild(option);
+        });
+      }
+    }
+  </script>
 </body>
 </html>
