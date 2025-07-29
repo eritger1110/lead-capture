@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TEST 2: Lead Source Category + Detail</title>
+  <title>TEST 3: Lead Source + Assigned Sales Rep</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -63,32 +63,32 @@
 <body>
   <div class="container">
     <div class="test-info">
-      <strong>TEST 2: Lead Source Category + Detail</strong>  
+      <strong>TEST 3: Lead Source + Assigned Sales Rep</strong>  
 
-      This form tests Lead_Source_Category__c + Lead_Source_Detail__c together.  
+      This form tests Lead Source fields + Assigned_Sales_Rep__c.  
 
-      If Test 1 worked but this fails, we know Lead_Source_Detail__c is the problem.
+      If Test 2 worked but this fails, we know Assigned_Sales_Rep__c is the problem.
     </div>
     
-    <h1>Test Form 2</h1>
+    <h1>Test Form 3</h1>
     
-    <form name="test-form-2" action="/.netlify/functions/submit-lead" method="POST" data-netlify="true">
+    <form name="test-form-3" action="/.netlify/functions/submit-lead" method="POST" data-netlify="true">
       <!-- Salesforce Web-To-Lead hidden fields -->
       <input type="hidden" name="oid" value="00Dfo000001KoHp" />
       <input type="hidden" name="retURL" value="/thank-you.html" />
       <input type="hidden" name="debug" value="1" />
       <input type="hidden" name="status" value="New" />
-      <input type="hidden" name="form-name" value="test-form-2" />
+      <input type="hidden" name="form-name" value="test-form-3" />
 
       <!-- Required Standard Fields -->
       <div class="form-group">
         <label for="first_name">First Name *</label>
-        <input id="first_name" name="first_name" type="text" value="Test2Eric" required />
+        <input id="first_name" name="first_name" type="text" value="Test3Eric" required />
       </div>
 
       <div class="form-group">
         <label for="last_name">Last Name *</label>
-        <input id="last_name" name="last_name" type="text" value="Test2Ritger" required />
+        <input id="last_name" name="last_name" type="text" value="Test3Ritger" required />
       </div>
 
       <div class="form-group">
@@ -98,15 +98,15 @@
 
       <div class="form-group">
         <label for="email">Email *</label>
-        <input id="email" name="email" type="email" value="test2@example.com" required />
+        <input id="email" name="email" type="email" value="test3@example.com" required />
       </div>
 
       <div class="form-group">
         <label for="phone">Phone *</label>
-        <input id="phone" name="phone" type="tel" value="555-555-5552" required />
+        <input id="phone" name="phone" type="tel" value="555-555-5553" required />
       </div>
 
-      <!-- TWO CUSTOM FIELDS: Lead Source Category + Detail -->
+      <!-- THREE CUSTOM FIELDS: Lead Source + Assigned Sales Rep -->
       <div class="form-group">
         <label for="Lead_Source_Category__c">Lead Source Category *</label>
         <select id="Lead_Source_Category__c" name="Lead_Source_Category__c" required>
@@ -121,7 +121,14 @@
         </select>
       </div>
 
-      <button type="submit">Submit Test 2</button>
+      <div class="form-group">
+        <label for="Assigned_Sales_Rep__c">Assigned Sales Rep</label>
+        <select id="Assigned_Sales_Rep__c" name="Assigned_Sales_Rep__c">
+          <option value="Eric Ritger" selected>Eric Ritger</option>
+        </select>
+      </div>
+
+      <button type="submit">Submit Test 3</button>
     </form>
   </div>
 </body>
