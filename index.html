@@ -77,6 +77,7 @@
       border: 2px solid #e1e5e9;
       border-radius: 8px;
       font-size: 16px;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
       transition: all 0.3s ease;
       background-color: #fff;
     }
@@ -89,6 +90,12 @@
       outline: none;
       border-color: #0074c1;
       box-shadow: 0 0 0 3px rgba(0, 116, 193, 0.1);
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 100px;
+      line-height: 1.5;
     }
 
     .form-row {
@@ -129,15 +136,6 @@
     .required {
       color: #e74c3c;
     }
-
-    .success-message {
-      background: #d4edda;
-      color: #155724;
-      padding: 15px;
-      border-radius: 8px;
-      margin-bottom: 20px;
-      border-left: 4px solid #28a745;
-    }
   </style>
 </head>
 <body>
@@ -149,10 +147,6 @@
     </div>
     
     <div class="form-container">
-      <div class="success-message">
-        <strong>✅ FINAL WORKING FORM:</strong> Now using the correct API names from Salesforce field definitions!
-      </div>
-      
       <form name="lead-capture-form" action="/.netlify/functions/submit-lead" method="POST" data-netlify="true">
         <!-- Salesforce Web-To-Lead hidden fields -->
         <input type="hidden" name="oid" value="00Dfo000001KoHp" />
