@@ -150,10 +150,10 @@
     
     <div class="form-container">
       <div class="success-message">
-        <strong>✅ CORRECTED FORM:</strong> Now using exact Salesforce field names for 100% reliability!
+        <strong>✅ FINAL WORKING FORM:</strong> Now using the correct API names from Salesforce field definitions!
       </div>
       
-      <form name="backup-lead-form" action="/.netlify/functions/submit-lead" method="POST" data-netlify="true">
+      <form name="lead-capture-form" action="/.netlify/functions/submit-lead" method="POST" data-netlify="true">
         <!-- Salesforce Web-To-Lead hidden fields -->
         <input type="hidden" name="oid" value="00Dfo000001KoHp" />
         <input type="hidden" name="retURL" value="/thank-you.html" />
@@ -163,7 +163,7 @@
         <input type="hidden" name="status" value="New" />
         
         <!-- Netlify form detection -->
-        <input type="hidden" name="form-name" value="backup-lead-form" />
+        <input type="hidden" name="form-name" value="lead-capture-form" />
 
         <div class="form-row">
           <div class="form-group">
@@ -214,10 +214,10 @@
           <input id="phone" name="phone" type="tel" required />
         </div>
 
-        <!-- CORRECTED CUSTOM FIELDS WITH PROPER SALESFORCE FIELD NAMES -->
+        <!-- CORRECTED CUSTOM FIELDS WITH PROPER API NAMES -->
         <div class="form-group">
-          <label for="00Nfo000001UQCb">Lead Source Category <span class="required">*</span></label>
-          <select id="00Nfo000001UQCb" name="00Nfo000001UQCb" required onchange="updateLeadSourceDetail()">
+          <label for="Lead_Source_Category__c">Lead Source Category <span class="required">*</span></label>
+          <select id="Lead_Source_Category__c" name="Lead_Source_Category__c" required onchange="updateLeadSourceDetail()">
             <option value="">-- Select One --</option>
             <option value="Fairs">Fairs</option>
             <option value="Home Shows">Home Shows</option>
@@ -230,22 +230,22 @@
         </div>
 
         <div class="form-group">
-          <label for="00Nfo000001UQNt">Lead Source Detail <span class="required">*</span></label>
-          <select id="00Nfo000001UQNt" name="00Nfo000001UQNt" required onchange="updateAssignedSalesRep()">
+          <label for="Lead_Source_Detail__c">Lead Source Detail <span class="required">*</span></label>
+          <select id="Lead_Source_Detail__c" name="Lead_Source_Detail__c" required onchange="updateAssignedSalesRep()">
             <option value="">-- Select Lead Source Category First --</option>
           </select>
         </div>
 
         <div class="form-group">
-          <label for="00Nfo000001VNxR">Assigned Sales Rep</label>
-          <select id="00Nfo000001VNxR" name="00Nfo000001VNxR">
+          <label for="Assigned_Sales_Rep__c">Assigned Sales Rep</label>
+          <select id="Assigned_Sales_Rep__c" name="Assigned_Sales_Rep__c">
             <option value="">-- Select Lead Source Detail First --</option>
           </select>
         </div>
 
         <div class="form-group">
-          <label for="00Nfo000001k1II">Service(s) of Interest <span class="required">*</span></label>
-          <select id="00Nfo000001k1II" name="00Nfo000001k1II" required>
+          <label for="Service_s_of_Interest__c">Service(s) of Interest <span class="required">*</span></label>
+          <select id="Service_s_of_Interest__c" name="Service_s_of_Interest__c" required>
             <option value="">-- Select --</option>
             <option value="Radon Testing">Radon Testing</option>
             <option value="Radon Mitigation">Radon Mitigation</option>
@@ -271,7 +271,7 @@
   </div>
 
   <script>
-    // Field dependency data based on Salesforce official form
+    // Field dependency data based on your Salesforce picklist values
     const leadSourceDetails = {
       "Fairs": [
         "Washington County Fair",
@@ -326,7 +326,7 @@
       ]
     };
 
-    // All sales reps available (from Salesforce official form)
+    // All sales reps available
     const allSalesReps = [
       "Aaron Konieczny", "Alan Wickesberg", "Ashley Luetke", "Barrett Ruis", 
       "Betsy Joppe", "Brian Hasenbush", "Christine Martin", "Dane Warren", 
@@ -340,9 +340,9 @@
     ];
 
     function updateLeadSourceDetail() {
-      const categorySelect = document.getElementById('00Nfo000001UQCb');
-      const detailSelect = document.getElementById('00Nfo000001UQNt');
-      const salesRepSelect = document.getElementById('00Nfo000001VNxR');
+      const categorySelect = document.getElementById('Lead_Source_Category__c');
+      const detailSelect = document.getElementById('Lead_Source_Detail__c');
+      const salesRepSelect = document.getElementById('Assigned_Sales_Rep__c');
       
       const selectedCategory = categorySelect.value;
       
@@ -361,8 +361,8 @@
     }
 
     function updateAssignedSalesRep() {
-      const detailSelect = document.getElementById('00Nfo000001UQNt');
-      const salesRepSelect = document.getElementById('00Nfo000001VNxR');
+      const detailSelect = document.getElementById('Lead_Source_Detail__c');
+      const salesRepSelect = document.getElementById('Assigned_Sales_Rep__c');
       
       const selectedDetail = detailSelect.value;
       
@@ -370,8 +370,7 @@
       salesRepSelect.innerHTML = '<option value="">-- Select One --</option>';
       
       if (selectedDetail) {
-        // For now, show all sales reps for any selected detail
-        // You can customize this based on specific detail-to-rep mappings if needed
+        // Show all sales reps for any selected detail
         allSalesReps.forEach(rep => {
           const option = document.createElement('option');
           option.value = rep;
